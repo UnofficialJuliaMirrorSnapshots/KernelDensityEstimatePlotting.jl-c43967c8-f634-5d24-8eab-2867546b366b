@@ -3,10 +3,6 @@
 [![Build Status](https://travis-ci.org/JuliaRobotics/KernelDensityEstimatePlotting.jl.svg?branch=master)](https://travis-ci.org/JuliaRobotics/KernelDensityEstimatePlotting.jl)
 [![codecov.io](https://codecov.io/github/JuliaRobotics/KernelDensityEstimatePlotting.jl/coverage.svg?branch=master)](https://codecov.io/github/JuliaRobotics/KernelDensityEstimatePlotting.jl?branch=master)
 
-[![KernelDensityEstimatePlotting](http://pkg.julialang.org/badges/KernelDensityEstimatePlotting_0.6.svg)](http://pkg.julialang.org/?pkg=KernelDensityEstimatePlotting&ver=0.6)
-[![KernelDensityEstimatePlotting](http://pkg.julialang.org/badges/KernelDensityEstimatePlotting_0.7.svg)](http://pkg.julialang.org/?pkg=KernelDensityEstimatePlotting&ver=0.7)
-[![KernelDensityEstimatePlotting](http://pkg.julialang.org/badges/KernelDensityEstimatePlotting_1.0.svg)](http://pkg.julialang.org/?pkg=KernelDensityEstimatePlotting&ver=1.0)
-
 This package provides the plotting functionality for the [KernelDensityEstimate.jl](https://github.com/JuliaRobotics/KernelDensityEstimate.jl) package, and currently only supports the Gadfly back-end.
 
 This package is also used extensively by the [RoMEPlotting.jl](https://github.com/dehann/RoMEPlotting.jl) package.

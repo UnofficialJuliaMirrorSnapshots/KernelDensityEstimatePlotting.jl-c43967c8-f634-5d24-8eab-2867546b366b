@@ -39,7 +39,7 @@ end
 # end
 
 function plot(darr::Union{BallTreeDensity, Vector{BallTreeDensity}};
-      c::NothingUnion{Vector{T}}=nothing,
+      c::NothingUnion{Vector}=nothing,
       N::Int=200,
       rmax=-Inf,rmin=Inf,  # should be deprecated
       axis::NothingUnion{Array{Float64,2}}=nothing,
@@ -106,7 +106,7 @@ function plotKDEContour(pp::Vector{BallTreeDensity};
     xmin=-Inf,xmax=Inf,ymin=-Inf,ymax=Inf,
     xlbl::T="x", ylbl::T="y",
     N::Int=200,
-    c::NothingUnion{Vector{T}}=nothing,
+    c::NothingUnion{Vector}=nothing,
     legend=nothing,
     title::NothingUnion{T}=nothing,
     levels::NothingUnion{Int}=nothing,
@@ -175,7 +175,7 @@ function plotKDEContour(p::BallTreeDensity;
     xmin=-Inf,xmax=Inf,ymin=-Inf,ymax=Inf,
     xlbl::T="x", ylbl::T="y",
     N::Int=200,
-    c::NothingUnion{Vector{T}}=nothing,
+    c::NothingUnion{Vector}=nothing,
     legend=nothing,
     title::NothingUnion{T}=nothing,
     levels::NothingUnion{Int}=nothing,
@@ -198,7 +198,7 @@ function drawPair(xx::Vector{BallTreeDensity}, dims::Vector{Int};
     legend=nothing,
     title::NothingUnion{T}=nothing,
     levels::NothingUnion{Int}=nothing,
-    c::NothingUnion{Vector{T}}=nothing,
+    c::NothingUnion{Vector}=nothing,
     fill=false, layers::Bool=false ) where {T <: AbstractString}
   # pts = getPoints(x);
   xmin, xmax, ymin, ymax = -Inf,Inf,-Inf,Inf
@@ -236,7 +236,7 @@ function drawAllPairs(xx::Vector{BallTreeDensity};
       legend=nothing,
       title::NothingUnion{T}=nothing,
       levels::NothingUnion{Int}=nothing,
-      c::NothingUnion{Vector{T}}=nothing,
+      c::NothingUnion{Vector}=nothing,
       fill=false, layers::Bool=false ) where {T <: AbstractString}
 
   # pts = getPoints(xx[1]);
@@ -286,7 +286,7 @@ end
 # function to draw all pairs of mulitdimensional kernel density estimate
 # axis is matrix with rows as dimensions and two columns for min and max axis cutoffs
 function plotKDE(darr::Array{BallTreeDensity,1};
-      c::NothingUnion{Vector{T}}=nothing,
+      c::NothingUnion{Vector}=nothing,
       N::Int=200,
       rmax=-Inf,rmin=Inf,  # should be deprecated
       axis::NothingUnion{Array{Float64,2}}=nothing,
@@ -342,7 +342,7 @@ end
 
 
 function plotKDE(bd::BallTreeDensity;
-      c::NothingUnion{Vector{T}}=nothing,
+      c::NothingUnion{Vector}=nothing,
       N::Int=200,
       rmax=-Inf,rmin=Inf,  # should be deprecated
       axis::NothingUnion{Array{Float64,2}}=nothing,
