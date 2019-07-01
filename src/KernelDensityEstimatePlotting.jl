@@ -144,7 +144,7 @@ function plotKDEContour(pp::Vector{BallTreeDensity};
     x=range(xmin,stop=xmax,length=N),
     y=range(ymin,stop=ymax,length=N),
     CO,
-    Theme(default_color=parse(Colorant,c[i])))[1] )
+    Theme(default_color=parse(Colorant,c[i]),line_width=2.25pt))[1] )
   end
 
   push!(PL,Coord.Cartesian(xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax))
