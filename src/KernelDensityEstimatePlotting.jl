@@ -335,8 +335,9 @@ function plotKDE(darr::Array{BallTreeDensity,1};
     #
     # defaults
     defaultcolor = false
-    if c==nothing
-      c, defaultcolor = getColorsByLength(length(darr)), true
+    if c==nothing || length(c) != length(darr)
+      c = getColorsByLength(length(darr))
+      defaultcolor = true
     end
     # c = (length(c)>=2) ? c : repeat(c,length(darr))
     lg = (legend == nothing) ? nothing : Guide.manual_color_key("Legend", legend, c)
