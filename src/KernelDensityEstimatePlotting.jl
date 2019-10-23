@@ -58,14 +58,15 @@ end
 
 
 function draw1D!(bd::BallTreeDensity,
-      bins::AbstractArray{Float64,1},
-      e,
-      c::T="deepskyblue",
-      myStyle::T="";
-      xlbl="X",
-      legend=nothing,
-      title::NothingUnion{T}=nothing,
-      fill=false, layers::Bool=false ) where {T <: AbstractString}
+                 bins::AbstractArray{Float64,1},
+                 e,
+                 c::T="deepskyblue",
+                 myStyle::T="";
+                 xlbl="X",
+                 points::Bool=true,
+                 legend=nothing,
+                 title::NothingUnion{T}=nothing,
+                 fill=false, layers::Bool=false ) where {T <: AbstractString}
   #
   global DOYTICKS
 
@@ -75,7 +76,12 @@ function draw1D!(bd::BallTreeDensity,
   if e == nothing
     ptArr = Any[]
 
-    l1 = Gadfly.layer(x=bins,y=yV,Geom.line, Gadfly.Theme(default_color=parse(Colorant,c),line_width=2pt))
+    if points
+      tps = getPoints(bd)
+      lrug = Gadfly.layer(x=tps, y=-0.01.*ones(size(tps,2)), Geom.point)
+      push!(ptArr, lrug)
+    end
+    l1 = Gadfly.layer(x=bins,y=yV,Geom.line, Gadfly.Theme(default_color=parse(Colorant,c),line_width=2pt, point_size=1pt))
     push!(ptArr, l1)
     push!(ptArr, Guide.xlabel(xlbl))
     if !DOYTICKS
@@ -146,6 +152,9 @@ function plotKDEContour(pp::Vector{BallTreeDensity};
     y=range(ymin,stop=ymax,length=N),
     CO,
     Theme(default_color=parse(Colorant,c[i]),line_width=2.25pt))[1] )
+    ## trying to get rug to work
+    # rugpl = plot(x=getPoints(p)[1,:], y=getPoints(p)[2,:], Guide.xrug, Guide.yrug)
+    # push!( PL, rugpl.layers[1] )
   end
 
   push!(PL,Coord.Cartesian(xmin=xmin,xmax=xmax,ymin=ymin,ymax=ymax))
@@ -330,6 +339,7 @@ function plotKDE(darr::Array{BallTreeDensity,1};
                  dimLbls::NothingUnion{Vector{T}}=nothing,
                  levels::NothingUnion{Int}=nothing,
                  fill=false,
+                 points::Bool=true,
                  layers::Bool=false,
                  overlay=nothing ) where {T <: AbstractString}
     #
@@ -362,7 +372,7 @@ function plotKDE(darr::Array{BallTreeDensity,1};
               if rangeV[1] > axis[di,1]  rangeV[1] = axis[di,1] end
               if axis[di,2] > rangeV[2]  rangeV[2] = axis[di,2] end
             end
-            H=draw1D!(mbd,range(rangeV[1],stop=rangeV[2],length=N), H, c[i],xlbl=xlbl,legend=lg, title=title, fill=fill) #,argsPlot,argsKDE
+            H=draw1D!(mbd,range(rangeV[1],stop=rangeV[2],length=N), H, c[i],xlbl=xlbl,legend=lg, title=title,            points=points, fill=fill) #,argsPlot,argsKDE
           else
             #
           end
@@ -393,10 +403,11 @@ function plotKDE(bd::BallTreeDensity;
                  dimLbls::NothingUnion{Vector{T}}=nothing,
                  levels::NothingUnion{Int}=nothing,
                  fill=false,
+                 points::Bool=true,
                  layers::Bool=false,
                  overlay=nothing  ) where {T <: AbstractString}
 
-  plotKDE([bd],N=N,c=c,rmax=rmax,rmin=rmin,xlbl=xlbl,legend=legend, dims=dims, axis=axis, dimLbls=dimLbls, levels=levels, title=title, fill=fill, layers=layers, overlay=overlay )
+  plotKDE([bd],N=N,c=c,rmax=rmax,rmin=rmin,xlbl=xlbl,legend=legend, dims=dims, axis=axis, dimLbls=dimLbls, levels=levels, title=title, fill=fill, layers=layers, overlay=overlay, points=points )
 end
 
 
